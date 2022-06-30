@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 const GameCard = ({
-  game: { name, background_image, metacritic, released, platforms },
+  game: { name, background_image, metacritic, released, platforms, platform },
 }) => {
   return (
     <div className="card">
@@ -13,6 +13,8 @@ const GameCard = ({
         sx={{
           maxWidth: 500,
           minWidth: 500,
+          maxHeight: 700,
+          minHeight: 700,
           borderRadius: 10,
           backgroundColor: "#66B2FF",
           border: "2px solid white",
@@ -41,12 +43,6 @@ const GameCard = ({
               <span>{released !== null ? "Released: " + released : ""}</span>
               <br />
               <span>{platforms[0].platform.name || ""} </span>
-              <br />
-              <span>
-                {platforms.map((platform) => {
-                  return <span>{platform.name}</span>;
-                })}
-              </span>
             </Typography>
           </CardContent>
         </CardActionArea>
