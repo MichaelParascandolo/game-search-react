@@ -5,8 +5,6 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-//test API page
-// https://api.rawg.io/api/games?key=8d1a421af80b4f9b8650de12d9943010&search=uncharted&page=1
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -50,8 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 ////////////
-const API_URL =
-  "https://api.rawg.io/api/games?key=8d1a421af80b4f9b8650de12d9943010";
+const API_URL = "https://api.rawg.io/api/games?key=";
 let x: any;
 
 const App = () => {
