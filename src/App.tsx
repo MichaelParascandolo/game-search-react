@@ -1,54 +1,11 @@
 import React, { useState, useEffect } from "react";
 import GameCard from "./components/GameCard";
 import "./App.css";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
+import { FaSearch } from "react-icons/fa";
+import { GrNext, GrPrevious } from "react-icons/gr";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "15ch",
-      "&:focus": {
-        width: "50ch",
-      },
-    },
-  },
-}));
-////////////
-const API_URL = "https://api.rawg.io/api/games?key=";
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_URL = "https://api.rawg.io/api/games?key=" + API_KEY;
 let x: any;
 
 const App = () => {
@@ -73,103 +30,83 @@ const App = () => {
 
   //runs at the start of the app
   useEffect(() => {
-    // searchGames("Destiny");
+    searchGames("Destiny");
   }, []);
 
   const searchGames = async (title: string) => {
     const response = await fetch(`${API_URL}&search=${title}&page=${counter}`);
     const data = await response.json();
     setGames(data.results);
-    // console.log(data.results);
     x = parseInt(data.count);
   };
 
+  const style = {
+    button: "p-2 rounded-2xl font-mono",
+  };
   return (
     <>
-      <Box sx={{ flexGrow: 1, borderBottom: "2px solid white" }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            >
-              <h1>GameLand</h1>
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search for games"
-                inputProps={{ "aria-label": "search" }}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    setCounter((counter = 1));
-                    searchGames(searchTerm);
-                  }
-                }}
-              />
-            </Search>
-          </Toolbar>
-        </AppBar>
-      </Box>
-      <div className="app">
-        {/* <div className="search">
-          <input
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for games"
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                setCounter((counter = 1));
+      <div className="min-h-screen w-screen p-4 bg-gradient-to-b from-[#f0f0f0] to-[#8b8989]">
+        <h1 className="text-7xl font-mono font-bold tracking-wide text-center mt-10 text-gray-800">
+          GameSearch
+        </h1>
+        <div className="app">
+          <div className="flex justify-center mt-5">
+            <input
+              className="text-3xl rounded-xl p-3 shadow-lg shadow-gray-700 text-gray-200 bg-gray-600 w-[50%]"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search Games . . ."
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setCounter((counter = 1));
+                  searchGames(searchTerm);
+                }
+              }}
+              type="text"
+            />{" "}
+            <button
+              onClick={() => {
                 searchGames(searchTerm);
-              }
-            }}
-            type="text"
-          />
-          {/* <img
-          src={}
-          alt="search"
-          onClick={() => {
-            //resets page counter back to 1
-            setCounter((counter = 1));
-            searchMovies(searchTerm);
-          }}
-        /> 
-        </div> */}
-
-        {games?.length > 0 ? (
-          <div className="main">
-            <h2>{x} Total Results</h2>
-            <h2 className="counter">Page {counter} </h2>
-            <Button variant="outlined" onClick={decrement}>
-              Back
-            </Button>{" "}
-            <Button variant="outlined" onClick={increment}>
-              Next
-            </Button>
-            <div className="container">
-              {games.map((game) => (
-                <GameCard game={game} />
-              ))}
-            </div>
-            <h2 className="counter">Page {counter} </h2>
-            <Button variant="outlined" onClick={decrement}>
-              Back
-            </Button>{" "}
-            <Button variant="outlined" onClick={increment}>
-              Next
-            </Button>
-            <footer>Created by Michael Parascandolo</footer>
+              }}
+              className="ml-3 bg-gray-800 p-3 rounded-2xl text-gray-200 hover:scale-110 ease-in duration-300"
+            >
+              <FaSearch size={35} />
+            </button>
           </div>
-        ) : (
-          <>
-            <h2>{typeof x === "undefined" ? "" : "No games found . . ."}</h2>
-          </>
-        )}
+
+          {games?.length > 0 ? (
+            <div>
+              <div className="text-center pt-5 text-xl font-mono text-gray-700">
+                <p className="">{x} Total Results</p>
+                <p className="">Page {counter} </p>
+              </div>
+              <div className="flex justify-between">
+                <button className={style.button} onClick={() => decrement()}>
+                  <GrPrevious size={25} />
+                </button>
+                <button className={style.button} onClick={() => increment()}>
+                  <GrNext size={25} />
+                </button>
+              </div>
+
+              <div className="">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 ">
+                  {games.map((game) => (
+                    <GameCard game={game} />
+                  ))}
+                </div>
+              </div>
+              <div className="text-center py-2 text-xl font-mono text-gray-800">
+                <h2>Page {counter} </h2>
+                <footer>Created by Michael Parascandolo</footer>
+              </div>
+            </div>
+          ) : (
+            <>
+              <h2>{typeof x === "undefined" ? "" : "No games found . . ."}</h2>
+            </>
+          )}
+        </div>
       </div>
     </>
   );
