@@ -1,12 +1,21 @@
 import * as React from "react";
 
 const GameCard = ({
-  game: { name, background_image, metacritic, released, platforms },
+  game: {
+    name,
+    background_image,
+    metacritic,
+    released,
+    platforms,
+    esrb_rating,
+  },
 }) => {
+  // console.log(dominant_color);
+  // &nbsp;
   return (
-    <div className="bg-gray-700 m-5 p-0 rounded-xl shadow-lg shadow-gray-700 border-solid border-2 border-gray-200">
+    <div className="bg-gray-600/30 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px]">
       <img
-        className="rounded-t-xl min-h-[360px]"
+        className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-gray-600"
         alt={name}
         src={
           background_image !== null
@@ -14,30 +23,55 @@ const GameCard = ({
             : "https://via.placeholder.com/640x360"
         }
       />
-      <h1 className="text-center text-3xl text-gray-900 tracking-wide font-bold mt-2">
+      <h1 className="text-center text-4xl text-gray-900 tracking-wide font-bold mt-2 font-mono">
         {name}
       </h1>
-      <div className="text-gray-100 text-center font-mono py-2">
-        <div className="mb-3">
-          <p className="font-bold text-sm">
-            {platforms[0] ? platforms[0].platform.name : null}
+      <div className="text-gray-800 text-center font-mono py-2">
+        {platforms ? (
+          <div className="mb-6 flex justify-center">
+            <p className="font-bold text-sm">
+              {platforms[0] ? platforms[0].platform.name : null}
+            </p>
+            {platforms[1] ? (
+              <p className="font-bold text-sm">
+                &nbsp;{platforms[1].platform.name}
+              </p>
+            ) : null}
+
+            {platforms[2] ? (
+              <p className="font-bold text-sm">
+                &nbsp;{platforms[2].platform.name}
+              </p>
+            ) : null}
+            {platforms[3] ? (
+              <p className="font-bold text-sm">
+                &nbsp;{platforms[3].platform.name}
+              </p>
+            ) : null}
+
+            {platforms[4] ? (
+              <p className="font-bold text-sm">
+                &nbsp;{platforms[4].platform.name}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
+        <div className="w-[100%] h-0.5 bg-gray-600/50" />
+        {esrb_rating ? <p>Rating: {esrb_rating.name}</p> : null}
+        {metacritic ? (
+          <p
+            className={
+              metacritic >= 75
+                ? "text-green-600 font-bold"
+                : metacritic >= 75
+                ? "text-yellow-500 font-bold"
+                : "text-red-500 font-bold"
+            }
+          >
+            Metacritic: {metacritic}
           </p>
-          <p className="font-bold text-sm">
-            {platforms[1] ? platforms[1].platform.name : null}
-          </p>
-          <p className="font-bold text-sm">
-            {platforms[2] ? platforms[2].platform.name : null}
-          </p>
-          <p className="font-bold text-sm">
-            {platforms[3] ? platforms[3].platform.name : null}
-          </p>
-          <p className="font-bold text-sm">
-            {platforms[4] ? platforms[4].platform.name : null}
-          </p>
-        </div>
-        <hr />
-        <p>{metacritic ? "Metacritic: " + metacritic : null}</p>
-        <p>{released ? released : null}</p>
+        ) : null}
+        {released ? <p>Released: {released}</p> : null}
       </div>
     </div>
   );
