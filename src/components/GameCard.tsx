@@ -10,10 +10,8 @@ const GameCard = ({
     esrb_rating,
   },
 }) => {
-  // console.log(dominant_color);
-  // &nbsp;
   return (
-    <div className="bg-gray-600/30 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px]">
+    <div className="bg-gray-600/30 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px] hover:scale-105 ease-in duration-300">
       <img
         className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-gray-600"
         alt={name}
@@ -29,9 +27,38 @@ const GameCard = ({
       <div className="text-gray-800 text-center font-mono py-2">
         {platforms ? (
           <div className="mb-6 flex justify-center">
-            <p className="font-bold text-sm">
-              {platforms[0] ? platforms[0].platform.name : null}
-            </p>
+            {/* {platforms[0] ? (
+              <p
+                className={
+                  platforms[0].platform.name === "Xbox One"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
+                    : platforms[0].platform.name === "Xbox 360"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
+                    : platforms[0].platform.name === "Xbox Series S/X"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
+                    : platforms[0].platform.name === "PlayStation 2"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
+                    : platforms[0].platform.name === "PlayStation 3"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
+                    : platforms[0].platform.name === "PlayStation 4"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
+                    : platforms[0].platform.name === "PlayStation 5"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
+                    : platforms[0].platform.name === "PS Vita"
+                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
+                    : "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-gray-600 rounded-lg"
+                }
+              >
+                &nbsp;{platforms[0].platform.name}
+              </p>
+            ) : null} */}
+
+            {platforms[0] ? (
+              <p className="font-bold text-sm">
+                &nbsp;{platforms[0].platform.name}
+              </p>
+            ) : null}
+
             {platforms[1] ? (
               <p className="font-bold text-sm">
                 &nbsp;{platforms[1].platform.name}
@@ -62,10 +89,10 @@ const GameCard = ({
           <p
             className={
               metacritic >= 75
-                ? "text-green-600 font-bold"
-                : metacritic >= 75
-                ? "text-yellow-500 font-bold"
-                : "text-red-500 font-bold"
+                ? "text-green-700 font-bold"
+                : metacritic > 60
+                ? "text-yellow-700 font-bold"
+                : "text-red-700 font-bold"
             }
           >
             Metacritic: {metacritic}

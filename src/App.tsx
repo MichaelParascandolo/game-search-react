@@ -15,6 +15,7 @@ let x: any;
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [games, setGames] = useState([]);
+  const message = "No games found . . .";
 
   let [counter, setCounter] = useState(1);
 
@@ -32,7 +33,6 @@ const App = () => {
     }
   };
 
-  //runs at the start of the app
   useEffect(() => {
     // searchGames("destiny");
   }, []);
@@ -45,8 +45,6 @@ const App = () => {
       const data = await response.json();
       setGames(data.results);
       x = parseInt(data.count);
-    } else {
-      alert("Type something!");
     }
   };
 
@@ -55,11 +53,11 @@ const App = () => {
   };
   return (
     <>
-      <div className="min-h-screen w-screen p-4 bg-gradient-to-r from-[#f0f0f0] to-[#b67df8]">
+      <div className="min-h-screen w-screen p-4 bg-gradient-to-r from-[#f0f0f0] to-[#bd8cf6]">
         {/* <h1 className="text-7xl font-mono font-bold tracking-wide text-center mt-10 text-gray-800"> */}
         <h1 className="text-transparent text-5xl md:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-gray-400 to-gray-900 text-center tracking-widest font-thin">
           GameSearch
-          <MdGamepad className="text-gray-800/80 flex" />
+          <MdGamepad className="text-gray-800/80 inline-flex" />
         </h1>
         <div className="app">
           <div className="flex justify-center mt-5">
@@ -115,7 +113,7 @@ const App = () => {
           ) : (
             <>
               <p className="text-center pt-5 text-xl font-mono text-gray-700">
-                {x === undefined ? null : "No games found . . ."}
+                {x === undefined ? null : message}
               </p>
             </>
           )}
