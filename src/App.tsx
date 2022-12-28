@@ -32,10 +32,10 @@ const App = () => {
   };
 
   // used for testing
-  useEffect(() => {
-    searchGames("destiny");
-    setSearchTerm("Destiny");
-  }, []);
+  // useEffect(() => {
+  //   searchGames("destiny");
+  //   setSearchTerm("Destiny");
+  // }, []);
 
   const searchGames = async (title: string) => {
     if (title !== "") {
