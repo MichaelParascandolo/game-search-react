@@ -1,4 +1,5 @@
 import * as React from "react";
+import Platform from "./Platform";
 
 const GameCard = ({
   game: {
@@ -6,8 +7,8 @@ const GameCard = ({
     background_image,
     metacritic,
     released,
-    platforms,
     esrb_rating,
+    platforms,
   },
 }) => {
   return (
@@ -16,7 +17,7 @@ const GameCard = ({
         className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-gray-600"
         alt={name}
         src={
-          background_image !== null
+          background_image
             ? background_image
             : "https://via.placeholder.com/640x360"
         }
@@ -24,81 +25,34 @@ const GameCard = ({
       <h1 className="text-center text-4xl text-gray-900 tracking-wide font-bold mt-2 font-mono">
         {name}
       </h1>
-      <div className="text-gray-800 text-center font-mono py-2">
-        {platforms ? (
-          <div className="mb-6 flex justify-center">
-            {/* {platforms[0] ? (
-              <p
-                className={
-                  platforms[0].platform.name === "Xbox One"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
-                    : platforms[0].platform.name === "Xbox 360"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
-                    : platforms[0].platform.name === "Xbox Series S/X"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-green-600 rounded-lg"
-                    : platforms[0].platform.name === "PlayStation 2"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
-                    : platforms[0].platform.name === "PlayStation 3"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
-                    : platforms[0].platform.name === "PlayStation 4"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
-                    : platforms[0].platform.name === "PlayStation 5"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
-                    : platforms[0].platform.name === "PS Vita"
-                    ? "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-blue-600 rounded-lg"
-                    : "font-bold text-sm text-gray-900 border-solid border-1 p-2 mx-5 bg-gray-600 rounded-lg"
-                }
-              >
-                &nbsp;{platforms[0].platform.name}
-              </p>
-            ) : null} */}
-
-            {platforms[0] ? (
-              <p className="font-bold text-sm">
-                &nbsp;{platforms[0].platform.name}
-              </p>
-            ) : null}
-
-            {platforms[1] ? (
-              <p className="font-bold text-sm">
-                &nbsp;{platforms[1].platform.name}
-              </p>
-            ) : null}
-
-            {platforms[2] ? (
-              <p className="font-bold text-sm">
-                &nbsp;{platforms[2].platform.name}
-              </p>
-            ) : null}
-            {platforms[3] ? (
-              <p className="font-bold text-sm">
-                &nbsp;{platforms[3].platform.name}
-              </p>
-            ) : null}
-
-            {platforms[4] ? (
-              <p className="font-bold text-sm">
-                &nbsp;{platforms[4].platform.name}
-              </p>
-            ) : null}
-          </div>
-        ) : null}
-        <div className="w-[100%] h-0.5 bg-gray-600/50" />
+      <div className="text-gray-800 text-center font-mono py-2 tracking-wide">
+        <div className="flex flex-wrap justify-center">
+          {platforms
+            ? platforms.map((platform: any) => (
+                <Platform
+                  name={platform.platform.name}
+                  key={platform.platform.id}
+                />
+              ))
+            : null}
+        </div>
+        <div className="w-[100%] h-0.5 mt-5 bg-gray-600/50" />
         {esrb_rating ? <p>Rating: {esrb_rating.name}</p> : null}
         {metacritic ? (
-          <p
+          <span
             className={
               metacritic >= 75
-                ? "text-green-700 font-bold"
+                ? "text-green-800 font-bold border-green-800 border-b-2 px-5"
                 : metacritic > 60
-                ? "text-yellow-700 font-bold"
-                : "text-red-700 font-bold"
+                ? "text-yellow-800 font-bold border-yellow-800 border-b-2 px-5"
+                : "text-red-800 font-bold border-red-800 border-b-2 px-5"
             }
           >
             Metacritic: {metacritic}
-          </p>
+          </span>
         ) : null}
-        {released ? <p>Released: {released}</p> : null}
+        {released ? <p>Release Date: {released}</p> : null}
+        {/* <span className="border-2 border-gray-600 p-3">More Info</span> */}
       </div>
     </div>
   );

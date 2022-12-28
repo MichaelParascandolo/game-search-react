@@ -3,4 +3,5 @@
 @tailwind utilities;
 html {
   /* background-color: #132438; */
+  overflow-x: hidden;
 }

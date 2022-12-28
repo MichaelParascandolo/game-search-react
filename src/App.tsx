@@ -8,22 +8,20 @@ import {
 } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const API_URL = "https://api.rawg.io/api/games?key=" + API_KEY;
-let x: any;
+const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
+const API_URL: string = "https://api.rawg.io/api/games?key=" + API_KEY;
+let numResults: number;
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [games, setGames] = useState<any>([]);
   const message = "No games found . . .";
 
-  let [counter, setCounter] = useState(1);
+  let [counter, setCounter] = useState<number>(1);
 
   const increment = () => {
-    if (counter <= 100) {
-      setCounter((counter += 1));
-      searchGames(searchTerm);
-    }
+    setCounter((counter += 1));
+    searchGames(searchTerm);
   };
 
   const decrement = () => {
@@ -33,8 +31,10 @@ const App = () => {
     }
   };
 
+  // used for testing
   useEffect(() => {
-    // searchGames("destiny");
+    searchGames("destiny");
+    setSearchTerm("Destiny");
   }, []);
 
   const searchGames = async (title: string) => {
@@ -44,7 +44,7 @@ const App = () => {
       );
       const data = await response.json();
       setGames(data.results);
-      x = parseInt(data.count);
+      numResults = parseInt(data.count);
     }
   };
 
@@ -83,37 +83,44 @@ const App = () => {
               <FaSearch size={35} />
             </button>
           </div>
-
           {games?.length > 0 ? (
             <div>
               <div className="text-center pt-5 text-xl font-mono text-gray-700">
-                <p>{x} Total Results</p>
-                <p className="font-bold mt-2 flex justify-center">
+                <p className="tracking-wide">{numResults} Results</p>
+                <p className="font-bold mt-2 flex justify-center text-gray-800">
                   <button className={style.button} onClick={() => decrement()}>
                     <FaArrowCircleLeft size={30} />
                   </button>
-                  Page {counter}
+                  <span className="mt-1 text-3xl">{counter}</span>
                   <button className={style.button} onClick={() => increment()}>
                     <FaArrowAltCircleRight size={30} />
                   </button>
                 </p>
               </div>
-              <div className="">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
-                  {games.map((game) => (
-                    <GameCard game={game} />
-                  ))}
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
+                {games.map((game: any, index: number) => (
+                  <GameCard game={game} key={index} />
+                ))}
               </div>
               <div className="text-center py-2 text-xl font-mono text-gray-800">
-                <p>Page {counter} </p>
-                <footer>Created by Michael Parascandolo</footer>
+                <p className="font-bold mt-2 flex justify-center">
+                  <button className={style.button} onClick={() => decrement()}>
+                    <FaArrowCircleLeft size={30} />
+                  </button>
+                  <span className="mt-1 text-3xl">{counter}</span>
+                  <button className={style.button} onClick={() => increment()}>
+                    <FaArrowAltCircleRight size={30} />
+                  </button>
+                </p>
+                <footer>
+                  © {new Date().getFullYear()} Michael Parascandolo
+                </footer>
               </div>
             </div>
           ) : (
             <>
               <p className="text-center pt-5 text-xl font-mono text-gray-700">
-                {x === undefined ? null : message}
+                {numResults ? null : message}
               </p>
             </>
           )}
