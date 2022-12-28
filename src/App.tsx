@@ -55,7 +55,7 @@ const App = () => {
     <>
       <div className="min-h-screen w-screen p-4 bg-gradient-to-r from-[#f0f0f0] to-[#bd8cf6]">
         {/* <h1 className="text-7xl font-mono font-bold tracking-wide text-center mt-10 text-gray-800"> */}
-        <h1 className="text-transparent text-5xl md:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-gray-400 to-gray-900 text-center tracking-widest font-thin">
+        <h1 className="text-transparent text-5xl md:text-7xl lg:text-8xl bg-clip-text bg-gradient-to-r from-gray-500 to-gray-900 text-center tracking-widest font-thin">
           GameSearch
           <MdGamepad className="text-gray-800/80 inline-flex" />
         </h1>
@@ -120,7 +120,7 @@ const App = () => {
           ) : (
             <>
               <p className="text-center pt-5 text-xl font-mono text-gray-700">
-                {numResults ? null : message}
+                {numResults === undefined ? null : message}
               </p>
             </>
           )}
