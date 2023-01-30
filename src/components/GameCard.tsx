@@ -9,10 +9,11 @@ const GameCard = ({
     released,
     esrb_rating,
     platforms,
+    genres,
   },
 }) => {
   return (
-    <div className="bg-gray-600/30 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px] hover:scale-105 ease-in duration-300">
+    <div className="bg-gray-500/20 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px] hover:scale-105 ease-in duration-300">
       <img
         className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-gray-600"
         alt={name}
@@ -37,21 +38,42 @@ const GameCard = ({
             : null}
         </div>
         <div className="w-[100%] h-0.5 mt-5 bg-gray-600/50" />
-        {esrb_rating ? <p>Rating: {esrb_rating.name}</p> : null}
-        {metacritic ? (
-          <span
-            className={
-              metacritic >= 75
-                ? "text-green-800 font-bold border-green-800 border-b-2 px-5"
-                : metacritic > 60
-                ? "text-yellow-800 font-bold border-yellow-800 border-b-2 px-5"
-                : "text-red-800 font-bold border-red-800 border-b-2 px-5"
-            }
-          >
-            Metacritic: {metacritic}
-          </span>
+        {genres
+          ? genres.map((item: any) => (
+              <span
+                className="flex flex-wrap justify-center font-bold"
+                key={item.id}
+              >
+                {item.name}
+              </span>
+            ))
+          : null}
+        <div className="w-[100%] h-0.5 mt-0 bg-gray-600/50" />
+        {esrb_rating ? (
+          <p>
+            Rating: <span className="font-bold">{esrb_rating.name}</span>
+          </p>
         ) : null}
-        {released ? <p>Release Date: {released}</p> : null}
+        {metacritic ? (
+          <div>
+            <span
+              className={
+                metacritic >= 75
+                  ? "text-green-800 font-bold border-green-800 border-b-2 px-5"
+                  : metacritic > 60
+                  ? "text-yellow-800 font-bold border-yellow-800 border-b-2 px-5"
+                  : "text-red-800 font-bold border-red-800 border-b-2 px-5"
+              }
+            >
+              Metacritic: {metacritic}
+            </span>
+          </div>
+        ) : null}
+        {released ? (
+          <p>
+            Release Date: <span className="font-bold">{released}</span>
+          </p>
+        ) : null}
         {/* <span className="border-2 border-gray-600 p-3">More Info</span> */}
       </div>
     </div>
