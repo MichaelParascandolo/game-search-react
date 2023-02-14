@@ -25,9 +25,17 @@ const GameCard = ({
       <h1 className="text-center text-4xl text-gray-200 tracking-wide font-bold mt-2 font-mono">
         {name}
       </h1>
+      {released ? (
+        <p>
+          <p className="text-center text-gray-400 tracking-widest">
+            {released}
+          </p>
+        </p>
+      ) : null}
       <div className="text-gray-200 text-center font-mono py-2 tracking-wide">
         <div className="w-[100%] h-0.5 mb-2 bg-black/50" />
-        <div className="grid grid-cols-3 justify-center">
+        <div className="flex flex-wrap justify-center">
+          {/* <div className="grid grid-cols-3 justify-center"> */}
           {platforms
             ? platforms.map((platform: any) => (
                 <Platform
@@ -38,16 +46,15 @@ const GameCard = ({
             : null}
         </div>
         <div className="w-[100%] h-0.5 my-2 bg-black/50" />
-        {genres
-          ? genres.map((item: any) => (
-              <span
-                className="px-2 text-lg justify-center font-bold"
-                key={item.id}
-              >
+        {genres ? (
+          <div className="flex flex-wrap justify-center">
+            {genres.map((item: any) => (
+              <span className="px-2 text-sm font-bold" key={item.id}>
                 {item.name}
               </span>
-            ))
-          : null}
+            ))}
+          </div>
+        ) : null}
         <div className="w-[100%] h-0.5 my-2 bg-black/50" />
         {esrb_rating ? (
           <p>
@@ -69,12 +76,6 @@ const GameCard = ({
             </span>
           </div>
         ) : null}
-        {released ? (
-          <p>
-            Release Date: <span className="font-bold">{released}</span>
-          </p>
-        ) : null}
-        {/* <span className="border-2 border-gray-600 p-3">More Info</span> */}
       </div>
     </div>
   );

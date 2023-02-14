@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { MdGamepad } from "react-icons/md";
-import {
-  FaArrowAltCircleRight,
-  FaArrowCircleLeft,
-  FaSearch,
-} from "react-icons/fa";
-import GameCard from "./components/GameCard";
+import { FaSearch } from "react-icons/fa";
 import "./App.css";
+import GameCard from "./components/GameCard";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
 const API_URL: string = "https://api.rawg.io/api/games?key=" + API_KEY;
@@ -48,75 +46,60 @@ const App = () => {
       numResults = parseInt(data.count);
     }
   };
-
-  const style = {
-    button: "p-2 rounded-2xl font-mono",
-  };
   return (
     <>
-      <div className="min-h-screen w-screen p-4">
-        {/* <h1 className="text-7xl font-mono font-bold tracking-wide text-center mt-10 text-gray-800"> */}
+      <div className="min-h-screen w-screen p-2">
         <h1 className="text-black text-5xl md:text-7xl lg:text-8xl bg-clip-text text-center tracking-widest">
           GameSearch
           <MdGamepad className="text-black/70 inline-flex" />
         </h1>
-        <div className="app">
-          <div className="flex justify-center mt-5">
-            <input
-              className="text-3xl rounded-xl p-3 shadow-black shadow-lg text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search Games . . ."
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  setCounter((counter = 1));
-                  searchGames(searchTerm);
-                }
-              }}
-              type="text"
-            />{" "}
-            <button
-              onClick={() => {
+        <div className="flex justify-center mt-5">
+          <input
+            className="text-3xl rounded-xl p-3 shadow-black shadow-lg text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search Games . . ."
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                setCounter((counter = 1));
                 searchGames(searchTerm);
-              }}
-              className="ml-3 bg-black/70 border-2 border-black p-3 rounded-2xl text-gray-200 shadow-lg shadow-black hover:bg-black/90 hover:scale-110 ease-in duration-300"
-            >
-              <FaSearch size={35} />
-            </button>
-          </div>
+              }
+            }}
+            type="text"
+          />{" "}
+          <button
+            onClick={() => {
+              searchGames(searchTerm);
+            }}
+            className="ml-3 bg-black/70 border-2 border-black p-3 rounded-2xl text-gray-200 shadow-lg shadow-black hover:bg-black/90 hover:scale-110 ease-in duration-300"
+          >
+            <FaSearch size={35} />
+          </button>
+        </div>
+        <div className="flex justify-center">
           {games?.length > 0 ? (
             <div>
-              <div className="text-center pt-5 text-xl font-mono text-black">
-                <div className="font-bold justify-evenly mt-2 flex text-black">
-                  <button className={style.button} onClick={() => decrement()}>
-                    <FaArrowCircleLeft size={35} />
-                  </button>
-                  <span className="my-auto text-2xl">Page {counter}</span>
-                  <button className={style.button} onClick={() => increment()}>
-                    <FaArrowAltCircleRight size={35} />
-                  </button>
-                </div>
-              </div>
+              <Nav
+                counter={counter}
+                decrement={() => decrement()}
+                increment={() => increment()}
+              />
+              {/* grid of games */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                 {games.map((game: any, index: number) => (
                   <GameCard game={game} key={index} />
                 ))}
               </div>
-              <div className="text-center py-2 text-xl font-mono text-black">
-                <p className="font-bold mt-2 flex justify-center">
-                  <button className={style.button} onClick={() => decrement()}>
-                    <FaArrowCircleLeft size={35} />
-                  </button>
-                  <span className="mt-1 text-3xl">{counter}</span>
-                  <button className={style.button} onClick={() => increment()}>
-                    <FaArrowAltCircleRight size={35} />
-                  </button>
-                </p>
-              </div>
+              <Nav
+                counter={counter}
+                decrement={() => decrement()}
+                increment={() => increment()}
+              />
+              <Footer />
             </div>
           ) : (
             <>
-              <p className="text-center pt-5 text-xl font-mono text-gray-700">
+              <p className="text-center mt-5 text-xl font-mono text-gray-200 border-2 border-black bg-black/70 py-2 rounded-xl">
                 {numResults === undefined ? null : message}
               </p>
             </>
