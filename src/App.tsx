@@ -13,7 +13,6 @@ let numResults: number;
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [games, setGames] = useState<any>([]);
-  const message = "No games found . . .";
   let [counter, setCounter] = useState<number>(1);
 
   const increment = () => {
@@ -94,11 +93,9 @@ const App = () => {
               <Footer />
             </div>
           ) : (
-            <>
-              <p className="text-center mt-5 text-xl font-mono text-gray-200 border-2 border-black bg-black/70 py-2 rounded-xl">
-                {numResults === undefined ? null : message}
-              </p>
-            </>
+            <p className="text-center mt-5 text-xl text-gray-200 border-2 border-black bg-black/70 py-2 px-4 rounded-xl">
+              {numResults === undefined ? null : "No games found . . ."}
+            </p>
           )}
         </div>
       </div>

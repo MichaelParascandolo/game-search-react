@@ -1,11 +1,5 @@
-import React from "react";
-
 const Platform = ({ name }: { name: string }) => {
-  const styles: {
-    ps: string;
-    xbox: string;
-    other: string;
-  } = {
+  const styles = {
     ps: "font-bold text-sm text-gray-900 border-blue-800 border-2 p-2 mx-1 my-1 bg-blue-600 rounded-lg",
     xbox: "font-bold text-sm text-gray-900 border-green-800 border-2 p-2 mx-1 my-1 bg-green-600 rounded-lg",
     other:
