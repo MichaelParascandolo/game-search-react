@@ -1,4 +1,3 @@
-import * as React from "react";
 import Platform from "./Platform";
 
 const GameCard = ({
@@ -13,9 +12,9 @@ const GameCard = ({
   },
 }) => {
   return (
-    <div className="bg-gray-500/20 m-5 p-0 rounded-xl shadow-xl shadow-gray-700 border-solid border-2 border-gray-700 max-w-[640px] hover:scale-105 ease-in duration-300">
+    <div className="bg-black/70 m-5 p-0 rounded-xl shadow-lg shadow-black border-solid border-4 border-black max-w-[640px] hover:scale-105 ease-in duration-300">
       <img
-        className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-gray-600"
+        className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-black"
         alt={name}
         src={
           background_image
@@ -23,11 +22,11 @@ const GameCard = ({
             : "https://via.placeholder.com/640x360"
         }
       />
-      <h1 className="text-center text-4xl text-gray-900 tracking-wide font-bold mt-2 font-mono">
+      <h1 className="text-center text-4xl text-gray-200 tracking-wide font-bold mt-2 font-mono">
         {name}
       </h1>
-      <div className="text-gray-800 text-center font-mono py-2 tracking-wide">
-        <div className="flex flex-wrap justify-center">
+      <div className="text-gray-200 text-center font-mono py-2 tracking-wide">
+        <div className="grid grid-cols-3 justify-center">
           {platforms
             ? platforms.map((platform: any) => (
                 <Platform
@@ -37,32 +36,32 @@ const GameCard = ({
               ))
             : null}
         </div>
-        <div className="w-[100%] h-0.5 mt-5 bg-gray-600/50" />
+        <div className="w-[100%] h-0.5 my-2 bg-black" />
         {genres
           ? genres.map((item: any) => (
               <span
-                className="flex flex-wrap justify-center font-bold"
+                className="px-2 text-lg justify-center font-bold"
                 key={item.id}
               >
                 {item.name}
               </span>
             ))
           : null}
-        <div className="w-[100%] h-0.5 mt-0 bg-gray-600/50" />
+        <div className="w-[100%] h-0.5 my-2 bg-black" />
         {esrb_rating ? (
           <p>
             Rating: <span className="font-bold">{esrb_rating.name}</span>
           </p>
         ) : null}
         {metacritic ? (
-          <div>
+          <div className="my-2">
             <span
               className={
                 metacritic >= 75
-                  ? "text-green-800 font-bold border-green-800 border-b-2 px-5"
+                  ? "text-black font-bold bg-green-500 border-2 border-green-700 rounded-lg px-5 py-1"
                   : metacritic > 60
-                  ? "text-yellow-800 font-bold border-yellow-800 border-b-2 px-5"
-                  : "text-red-800 font-bold border-red-800 border-b-2 px-5"
+                  ? "text-black font-bold bg-yellow-500 border-2 border-yellow-700 rounded-lg px-5 py-1"
+                  : "text-black font-bold bg-red-500 border-2 border-red-700 rounded-lg px-5 py-1"
               }
             >
               Metacritic: {metacritic}

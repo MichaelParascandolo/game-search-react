@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 html {
-  /* background-color: #132438; */
+  background-image: url("assets/space.jpg");
+  background-size: cover;
+  background-position: left;
   overflow-x: hidden;
 }
