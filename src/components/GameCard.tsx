@@ -26,6 +26,7 @@ const GameCard = ({
         {name}
       </h1>
       <div className="text-gray-200 text-center font-mono py-2 tracking-wide">
+        <div className="w-[100%] h-0.5 mb-2 bg-black/50" />
         <div className="grid grid-cols-3 justify-center">
           {platforms
             ? platforms.map((platform: any) => (
@@ -36,7 +37,7 @@ const GameCard = ({
               ))
             : null}
         </div>
-        <div className="w-[100%] h-0.5 my-2 bg-black" />
+        <div className="w-[100%] h-0.5 my-2 bg-black/50" />
         {genres
           ? genres.map((item: any) => (
               <span
@@ -47,7 +48,7 @@ const GameCard = ({
               </span>
             ))
           : null}
-        <div className="w-[100%] h-0.5 my-2 bg-black" />
+        <div className="w-[100%] h-0.5 my-2 bg-black/50" />
         {esrb_rating ? (
           <p>
             Rating: <span className="font-bold">{esrb_rating.name}</span>

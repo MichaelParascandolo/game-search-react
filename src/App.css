@@ -5,5 +5,5 @@ html {
   background-image: url("assets/space.jpg");
   background-size: cover;
   background-position: left;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
