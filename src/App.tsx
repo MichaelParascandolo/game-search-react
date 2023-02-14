@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { MdGamepad } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import "./App.css";
 import GameCard from "./components/GameCard";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Logo from "./components/Logo";
 
 const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
 const API_URL: string = "https://api.rawg.io/api/games?key=" + API_KEY;
@@ -14,7 +14,6 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [games, setGames] = useState<any>([]);
   const message = "No games found . . .";
-
   let [counter, setCounter] = useState<number>(1);
 
   const increment = () => {
@@ -49,10 +48,7 @@ const App = () => {
   return (
     <>
       <div className="min-h-screen w-screen p-2">
-        <h1 className="text-black text-5xl md:text-7xl lg:text-8xl bg-clip-text text-center tracking-widest">
-          GameSearch
-          <MdGamepad className="text-black/70 inline-flex" />
-        </h1>
+        <Logo />
         <div className="flex justify-center mt-5">
           <input
             className="text-3xl rounded-xl p-3 shadow-black shadow-lg text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"

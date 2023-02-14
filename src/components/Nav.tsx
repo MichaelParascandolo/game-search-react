@@ -13,7 +13,7 @@ const Nav = ({
     <>
       <div className="flex justify-center">
         <div className="mt-2 text-xl font-mono min-w-[50%]">
-          <div className="font-bold bg-black/70 border-2 border-black py-2 rounded-xl justify-center mt-2 flex text-gray-300 shadow-md shadow-black">
+          <div className="font-bold bg-black/70 border-2 border-black py-2 rounded-xl justify-between mt-2 flex text-gray-300 shadow-md shadow-black">
             <button
               className={
                 "px-4 rounded-2xl hover:scale-110 transition-all duration-300 ease-in-out"
@@ -22,7 +22,9 @@ const Nav = ({
             >
               <FaArrowCircleLeft size={30} />
             </button>
-            <span className="my-auto text-xl">Page {counter}</span>
+            <span className="my-auto text-xl tracking-wide">
+              Page {counter}
+            </span>
             <button
               className={
                 "px-4 rounded-2xl hover:scale-110 transition-all duration-300 ease-in-out"

@@ -26,11 +26,7 @@ const GameCard = ({
         {name}
       </h1>
       {released ? (
-        <p>
-          <p className="text-center text-gray-400 tracking-widest">
-            {released}
-          </p>
-        </p>
+        <p className="text-center text-gray-400 tracking-widest">{released}</p>
       ) : null}
       <div className="text-gray-200 text-center font-mono py-2 tracking-wide">
         <div className="w-[100%] h-0.5 mb-2 bg-black/50" />
