@@ -29,8 +29,8 @@ const App = () => {
 
   // used for testing
   useEffect(() => {
-    searchGames("destiny");
-    setSearchTerm("Destiny");
+    // searchGames("destiny");
+    // setSearchTerm("Destiny");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,9 +46,9 @@ const App = () => {
   };
   return (
     <>
-      <div className="min-h-screen w-screen p-2">
+      <div className="w-full h-full p-2">
         <Logo />
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-2">
           <input
             className="text-3xl rounded-xl p-3 shadow-black shadow-lg text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"
             value={searchTerm}

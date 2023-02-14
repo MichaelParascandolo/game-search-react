@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 html {
-  background-image: url("assets/space.jpg");
+  background-image: url("assets/bg2.jpg");
   background-size: cover;
-  background-position: left;
-  /* overflow-x: hidden; */
+  background-color: rgb(85, 46, 173);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 img {
   -webkit-user-drag: none;
