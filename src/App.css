@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 html {
-  background-image: url("assets/bg1.jpg");
+  background-image: url("assets/bg1-smaller.jpg");
   background-size: cover;
   background-position: right;
   /* background-color: rgb(85, 46, 173); */
