@@ -41,21 +41,25 @@ const GameCard = ({
               ))
             : null}
         </div>
-        <div className="w-[100%] h-0.5 my-2 bg-black/50" />
-        {genres ? (
-          <div className="flex flex-wrap justify-center">
-            {genres.map((item: any) => (
-              <span className="px-2 text-md tracking-wider" key={item.id}>
-                {item.name}
-              </span>
-            ))}
-          </div>
+        {genres.length > 0 ? (
+          <>
+            <div className="w-[100%] h-0.5 my-2 bg-black/50" />
+            <div className="flex flex-wrap justify-center">
+              {genres.map((item: any) => (
+                <span className="px-2 text-md tracking-wider" key={item.id}>
+                  {item.name}
+                </span>
+              ))}
+            </div>
+          </>
         ) : null}
-        <div className="w-[100%] h-0.5 my-2 bg-black/50" />
         {esrb_rating ? (
-          <p>
-            Rating: <span className="font-bold">{esrb_rating.name}</span>
-          </p>
+          <>
+            <div className="w-[100%] h-0.5 my-2 bg-black/50" />
+            <p>
+              Rating: <span className="font-bold">{esrb_rating.name}</span>
+            </p>
+          </>
         ) : null}
         {metacritic ? (
           <div className="my-2">
