@@ -5,7 +5,7 @@ const Logo = () => {
     <>
       <h1 className="text-black select-none text-5xl md:text-7xl lg:text-8xl bg-clip-text text-center tracking-widest">
         GameSearch
-        <MdGamepad className="text-black/70 inline-flex" />
+        <MdGamepad className="text-black inline-flex" />
       </h1>
     </>
   );

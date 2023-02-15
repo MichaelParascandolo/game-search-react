@@ -30,8 +30,8 @@ const GameCard = ({
       ) : null}
       <div className="text-gray-200 text-center font-mono py-2 tracking-wide">
         <div className="w-[100%] h-0.5 mb-2 bg-black/50" />
-        <div className="flex flex-wrap justify-center">
-          {/* <div className="grid grid-cols-3 justify-center"> */}
+        {/* <div className="flex flex-wrap justify-center"> */}
+        <div className="grid grid-cols-3 justify-center">
           {platforms
             ? platforms.map((platform: any) => (
                 <Platform
@@ -45,7 +45,7 @@ const GameCard = ({
         {genres ? (
           <div className="flex flex-wrap justify-center">
             {genres.map((item: any) => (
-              <span className="px-2 text-sm font-bold" key={item.id}>
+              <span className="px-2 text-md font-bold" key={item.id}>
                 {item.name}
               </span>
             ))}
