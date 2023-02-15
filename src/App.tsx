@@ -93,9 +93,13 @@ const App = () => {
               <Footer />
             </div>
           ) : (
-            <p className="text-center mt-5 text-xl text-gray-200 border-2 border-black bg-black/70 py-2 px-4 rounded-xl">
-              {numResults === undefined ? null : "No games found . . ."}
-            </p>
+            <>
+              {numResults === undefined ? null : (
+                <p className="text-center mt-5 text-xl text-gray-200 border-2 border-black bg-black/70 py-2 px-4 rounded-xl">
+                  No games found . . .
+                </p>
+              )}
+            </>
           )}
         </div>
       </div>
