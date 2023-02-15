@@ -29,8 +29,8 @@ const App = () => {
 
   // used for testing
   useEffect(() => {
-    // searchGames("destiny");
-    // setSearchTerm("Destiny");
+    searchGames("destiny");
+    setSearchTerm("Destiny");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
