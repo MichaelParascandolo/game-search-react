@@ -1,9 +1,9 @@
 const Platform = ({ name }: { name: string }) => {
   const styles = {
-    ps: "font-bold text-sm w-[200px] text-gray-900 border-blue-800 border-2 p-2 mx-1 my-1 bg-blue-500 rounded-lg",
-    xbox: "font-bold text-sm w-[200px] text-gray-900 border-green-800 border-2 p-2 mx-1 my-1 bg-green-500 rounded-lg",
+    ps: "font-bold text-sm w-[150px] text-gray-900 border-blue-800 border-2 p-2 mx-1 my-1 bg-blue-500 rounded-lg",
+    xbox: "font-bold text-sm w-[150px] text-gray-900 border-green-800 border-2 p-2 mx-1 my-1 bg-green-500 rounded-lg",
     other:
-      "font-bold text-sm w-[200px] text-gray-900 border-gray-800 border-2 p-2 mx-1 my-1 bg-gray-400 rounded-lg",
+      "font-bold text-sm w-[150px] text-gray-900 border-gray-800 border-2 p-2 mx-1 my-1 bg-gray-400 rounded-lg",
   };
   return (
     <>

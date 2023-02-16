@@ -50,7 +50,7 @@ const App = () => {
         <Logo />
         <div className="flex justify-center mt-2">
           <input
-            className="text-3xl rounded-xl p-3 shadow-black shadow-lg text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"
+            className="text-3xl rounded-xl p-3 shadow-md shadow-black text-gray-200 bg-black/70 border-2 border-black w-[70%] max-w-[800px] capitalize"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search Games . . ."
@@ -66,7 +66,7 @@ const App = () => {
             onClick={() => {
               searchGames(searchTerm);
             }}
-            className="ml-3 bg-black/70 border-2 border-black p-3 rounded-2xl text-gray-200 shadow-lg shadow-black hover:bg-black/90 hover:scale-110 ease-in duration-300"
+            className="ml-3 bg-black/70 border-2 border-black p-3 rounded-2xl text-gray-200 md:shadow-md md:shadow-black hover:bg-black/90 hover:scale-110 ease-in duration-300"
           >
             <FaSearch size={35} />
           </button>
