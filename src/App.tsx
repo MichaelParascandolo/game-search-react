@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import { Oval } from "react-loading-icons";
 import "./App.css";
 import GameCard from "./components/GameCard";
 import Nav from "./components/Nav";
@@ -13,6 +14,7 @@ let numResults: number;
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [games, setGames] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   let [counter, setCounter] = useState<number>(1);
 
   const increment = () => {
@@ -35,6 +37,7 @@ const App = () => {
   }, []);
 
   const searchGames = async (title: string) => {
+    setLoading(true);
     if (title !== "") {
       const response = await fetch(
         `${API_URL}&search=${title}&page=${counter}`
@@ -43,6 +46,7 @@ const App = () => {
       setGames(data.results);
       numResults = parseInt(data.count);
     }
+    setLoading(false);
   };
   return (
     <>
@@ -68,7 +72,7 @@ const App = () => {
             }}
             className="ml-3 bg-black/70 border-2 border-black p-3 rounded-2xl text-gray-200 md:shadow-md md:shadow-black hover:bg-black/90 hover:scale-110 ease-in duration-300"
           >
-            <FaSearch size={35} />
+            {!loading ? <FaSearch size={35} /> : <Oval />}
           </button>
         </div>
         <div className="flex justify-center">

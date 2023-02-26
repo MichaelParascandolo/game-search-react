@@ -14,7 +14,7 @@ const GameCard = ({
   return (
     <div className="bg-black/70 m-5 p-0 rounded-xl shadow-lg shadow-black border-solid border-4 border-black max-w-[640px] hover:scale-105 ease-in duration-300">
       <img
-        className="rounded-t-xl h-[360px] w-[640px] border-b-2 border-black"
+        className="rounded-t-xl max-h-[360px] w-[100%] bg-cover border-b-2 border-black"
         alt={name}
         src={
           background_image
