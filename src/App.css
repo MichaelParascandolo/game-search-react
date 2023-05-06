@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 html {
-  @apply bg-[url('assets/bg1-smaller.jpg')] bg-scroll md:bg-fixed md:bg-cover md:bg-right overflow-x-hidden;
+  @apply bg-[#7942A7] md:bg-[url('assets/bg5.jpg')] bg-scroll md:bg-fixed md:bg-cover md:bg-right overflow-x-hidden;
 }
 img {
   -webkit-user-drag: none;
