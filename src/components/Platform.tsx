@@ -5,37 +5,32 @@ const Platform = ({ name }: { name: string }) => {
     other:
       "font-bold text-sm w-[150px] text-gray-900 border-gray-800 border-2 p-2 mx-1 my-1 bg-gray-400 rounded-lg",
   };
+
+  let consoleStyle = styles.other;
+
+  switch (name) {
+    case "Xbox One":
+    case "Xbox 360":
+    case "Xbox":
+    case "Xbox Series S/X":
+      consoleStyle = styles.xbox;
+      break;
+    case "PlayStation 2":
+    case "PlayStation 3":
+    case "PlayStation 4":
+    case "PlayStation 5":
+    case "PlayStation 1":
+    case "PSP":
+    case "PS Vita":
+      consoleStyle = styles.ps;
+      break;
+    default:
+      break;
+  }
+
   return (
     <>
-      <span
-        className={
-          name === "Xbox One"
-            ? styles.xbox
-            : name === "Xbox 360"
-            ? styles.xbox
-            : name === "Xbox"
-            ? styles.xbox
-            : name === "Xbox Series S/X"
-            ? styles.xbox
-            : name === "PlayStation 2"
-            ? styles.ps
-            : name === "PlayStation 3"
-            ? styles.ps
-            : name === "PlayStation 4"
-            ? styles.ps
-            : name === "PlayStation 5"
-            ? styles.ps
-            : name === "PlayStation 1"
-            ? styles.ps
-            : name === "PSP"
-            ? styles.ps
-            : name === "PS Vita"
-            ? styles.ps
-            : styles.other
-        }
-      >
-        {name}
-      </span>
+      <span className={consoleStyle}>{name}</span>
     </>
   );
 };
