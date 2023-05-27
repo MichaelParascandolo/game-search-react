@@ -6,8 +6,8 @@ const Nav = ({
   increment,
 }: {
   counter: number;
-  decrement: any;
-  increment: any;
+  decrement: () => void;
+  increment: () => void;
 }) => {
   return (
     <>
