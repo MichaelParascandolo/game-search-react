@@ -11,9 +11,39 @@ const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
 const API_URL: string = "https://api.rawg.io/api/games?key=" + API_KEY;
 let numResults: number;
 
+export interface GameData {
+  name?: string;
+  game: {
+    name?: string;
+    released?: string;
+    background_image?: string;
+    esrb_rating?: ESRBData;
+    metacritic?: number;
+    platforms?: PlatformData[];
+    genres?: GenreData[];
+  };
+}
+
+interface ESRBData {
+  id: number;
+  name: string;
+}
+
+export interface PlatformData {
+  platform: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface GenreData {
+  id: number;
+  name: string;
+}
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [games, setGames] = useState<any>([]);
+  const [games, setGames] = useState<GameData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   let [counter, setCounter] = useState<number>(1);
 
@@ -85,8 +115,8 @@ const App = () => {
               />
               {/* grid of games */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 ">
-                {games.map((game: any, index: number) => (
-                  <GameCard game={game} key={index} />
+                {games.map((item: GameData, index: number) => (
+                  <GameCard game={item} key={index} />
                 ))}
               </div>
               <Nav

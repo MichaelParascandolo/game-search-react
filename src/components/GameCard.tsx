@@ -1,4 +1,5 @@
 import Platform from "./Platform";
+import { GameData, GenreData, PlatformData } from "../App";
 
 const GameCard = ({
   game: {
@@ -10,7 +11,7 @@ const GameCard = ({
     platforms,
     genres,
   },
-}) => {
+}: GameData) => {
   return (
     <div className="bg-black/70 m-5 p-0 rounded-xl shadow-lg shadow-black border-solid border-4 border-black max-w-[640px] hover:scale-105 ease-in duration-300">
       <img
@@ -33,19 +34,16 @@ const GameCard = ({
         <div className="flex flex-wrap justify-center">
           {/* <div className="grid grid-cols-3 justify-center"> */}
           {platforms
-            ? platforms.map((platform: any) => (
-                <Platform
-                  name={platform.platform.name}
-                  key={platform.platform.id}
-                />
+            ? platforms.map((item: PlatformData) => (
+                <Platform name={item.platform.name} key={item.platform.id} />
               ))
             : null}
         </div>
-        {genres.length > 0 ? (
+        {genres ? (
           <>
             <div className="w-[100%] h-0.5 my-2 bg-black/50" />
             <div className="flex flex-wrap justify-center">
-              {genres.map((item: any) => (
+              {genres.map((item: GenreData) => (
                 <span className="px-2 text-md tracking-wider" key={item.id}>
                   {item.name}
                 </span>
